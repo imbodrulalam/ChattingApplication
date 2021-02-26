@@ -23,7 +23,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -63,14 +63,15 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/PhoneBox"
+                android:id="@+id/phoneBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textbox_outline"
                 android:ems="10"
                 android:hint="Type your phone numer"
-                android:inputType="textPersonName"
-                android:padding="7dp" />
+                android:inputType="number|textPersonName"
+                android:padding="7dp"
+                android:phoneNumber="true" />
 
             <Button
                 android:id="@+id/ContinueBtn"

@@ -16,11 +16,12 @@ public class PhoneNumberActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         binding = ActivityPhoneNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.phoneBox.requestFocus();
         binding.ContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PhoneNumberActivity.this, OTPActivity.class);
-                intent.putExtra("phoneNumber", binding.PhoneBox.getText().toString());
+                intent.putExtra("phoneNumber", binding.phoneBox.getText().toString());
                 startActivity(intent);
             }
         });
