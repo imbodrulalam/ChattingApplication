@@ -13,28 +13,28 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Enter your OTP number for verify your acount"
+        android:text="Enter your name and optional profile picture"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/verifyLbl"
         app:layout_constraintStart_toStartOf="@+id/verifyLbl"
         app:layout_constraintTop_toBottomOf="@+id/verifyLbl" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/otp_verify" />
+        android:src="@drawable/avatar" />
 
     <TextView
         android:id="@+id/verifyLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Verify +8801610601131"
+        android:text="Profile Info"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -62,20 +62,16 @@
             android:layout_margin="10dp"
             android:orientation="vertical">
 
-            <com.mukesh.OtpView
-                android:id="@+id/otp_view"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/nameBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="14dp"
-                android:inputType="number"
-                android:itemBackground="@color/grey"
-                android:phoneNumber="true"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                app:OtpItemCount="6"
-                app:OtpLineColor="@color/green"
-                app:OtpViewType="line" />
+                android:background="@drawable/textbox_outline"
+                android:ems="10"
+                android:hint="Type your name"
+                android:inputType="text"
+                android:padding="7dp"
+                android:phoneNumber="true" />
 
             <Button
                 android:id="@+id/continueBtn"
@@ -87,5 +83,14 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

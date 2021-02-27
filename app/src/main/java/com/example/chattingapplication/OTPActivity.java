@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.example.chattingapplication.databinding.ActivityOTPBinding;
@@ -22,19 +26,27 @@ import com.mukesh.OnOtpCompletionListener;
 import java.util.concurrent.TimeUnit;
 
 public class OTPActivity extends AppCompatActivity {
-    ActivityOTPBinding binding;
-    FirebaseAuth auth;
-    String verificationId;
+    ActivityOTPBinding binding; // object of OTPActivity layout
+    FirebaseAuth auth; // firebase authentication
+    String verificationId; //verification id receiver
+    ProgressDialog dialog; //for otp loading process
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        getSupportActionBar().hide(); //hide action bar from page
         auth = FirebaseAuth.getInstance();
         binding = ActivityOTPBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //sending otp message notification and loading
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Sending OTP...");
+        dialog.setCancelable(false);
+        dialog.show();
+
         String phoneNumber = getIntent().getStringExtra("phoneNumber");
-        binding.verifyLbl.setText("Verify " + phoneNumber);
+        binding.verifyLbl.setText("Verify " + phoneNumber); // showing phone number on otp activity page
 
 
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(auth)
@@ -55,7 +67,12 @@ public class OTPActivity extends AppCompatActivity {
                     @Override
                     public void onCodeSent(@NonNull String verifyId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         super.onCodeSent(verifyId, forceResendingToken);
+                        dialog.dismiss();
                         verificationId = verifyId;
+                        //force to open the keyboard for type otp
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                        binding.otpView.requestFocus();
                     }
                 }).build();
         PhoneAuthProvider.verifyPhoneNumber(options);
@@ -68,7 +85,10 @@ public class OTPActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(OTPActivity.this, "Logged In.", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(OTPActivity.this, "Logged In.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(OTPActivity.this,SetupProfileActivity.class);
+                            startActivity(intent);
+                            finishAffinity(); // close all previous activity
                         } else{
                             Toast.makeText(OTPActivity.this, "Feiled.", Toast.LENGTH_SHORT).show();
                         }

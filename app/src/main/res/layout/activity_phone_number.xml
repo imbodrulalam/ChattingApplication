@@ -63,7 +63,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/phoneBox"
+                android:id="@+id/nameBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textbox_outline"
@@ -74,7 +74,7 @@
                 android:phoneNumber="true" />
 
             <Button
-                android:id="@+id/ContinueBtn"
+                android:id="@+id/continueBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

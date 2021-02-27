@@ -5,8 +5,9 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+
     buildFeatures{
-        viewBinding true
+        viewBinding true //for binding class
     }
 
     defaultConfig {
@@ -39,8 +40,16 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
-    implementation platform('com.google.firebase:firebase-bom:26.5.0')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth'
+
+    //github library import
+    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2' //otp activity layout
+    implementation 'de.hdodenhof:circleimageview:3.1.0' //for circle picture shape
+
+    //Firebase Setup
+    implementation platform('com.google.firebase:firebase-bom:26.5.0')//firebase setup
+    implementation 'com.google.firebase:firebase-analytics'//firebase analytics
+    implementation 'com.google.firebase:firebase-auth' //firebase authentication
+    implementation 'com.google.firebase:firebase-database'//firebase database
+    implementation 'com.google.firebase:firebase-storage'//firebase storage
+
 }
