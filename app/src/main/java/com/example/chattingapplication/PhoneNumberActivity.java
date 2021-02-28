@@ -17,7 +17,7 @@ public class PhoneNumberActivity extends AppCompatActivity {
         binding = ActivityPhoneNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.phoneBox.requestFocus();
-        binding.ContinueBtn.setOnClickListener(new View.OnClickListener() {
+        binding.continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PhoneNumberActivity.this, OTPActivity.class);
