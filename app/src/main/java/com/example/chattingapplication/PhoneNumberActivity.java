@@ -1,21 +1,31 @@
 package com.example.chattingapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.chattingapplication.databinding.ActivityPhoneNumberBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PhoneNumberActivity extends AppCompatActivity {
     ActivityPhoneNumberBinding binding;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         binding = ActivityPhoneNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //this is for signed in users
+        auth = FirebaseAuth.getInstance();
+        if(auth.getCurrentUser() != null){
+            Intent intent = new Intent(PhoneNumberActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         binding.phoneBox.requestFocus();
         binding.continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override

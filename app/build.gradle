@@ -32,10 +32,11 @@ android {
     }
 }
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0-alpha01'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -44,6 +45,8 @@ dependencies {
     //github library import
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2' //otp activity layout
     implementation 'de.hdodenhof:circleimageview:3.1.0' //for circle picture shape
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     //Firebase Setup
     implementation platform('com.google.firebase:firebase-bom:26.5.0')//firebase setup
@@ -51,5 +54,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth' //firebase authentication
     implementation 'com.google.firebase:firebase-database'//firebase database
     implementation 'com.google.firebase:firebase-storage'//firebase storage
+    implementation 'com.google.firebase:firebase-messaging'//message
+
 
 }
