@@ -1,4 +1,4 @@
-package com.example.chattingapplication;
+package com.example.chattingapplication.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.chattingapplication.Activities.ChatActivity;
+import com.example.chattingapplication.R;
 import com.example.chattingapplication.Models.User;
 import com.example.chattingapplication.databinding.RowConversationBinding;
 

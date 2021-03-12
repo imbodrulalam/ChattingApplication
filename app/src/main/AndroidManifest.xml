@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChattingApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ChatActivity"></activity>
-        <activity android:name=".SetupProfileActivity" />
+        <activity android:name=".Activities.ChatActivity"></activity>
+        <activity android:name=".Activities.SetupProfileActivity" />
         <activity
-            android:name=".OTPActivity"
+            android:name=".Activities.OTPActivity"
             android:windowSoftInputMode="stateVisible" />
         <activity
-            android:name=".PhoneNumberActivity"
+            android:name=".Activities.PhoneNumberActivity"
             android:windowSoftInputMode="stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activities.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
