@@ -69,6 +69,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="14dp"
                 android:inputType="number"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:itemBackground="@color/grey"
                 android:phoneNumber="true"
                 android:textColor="@android:color/black"

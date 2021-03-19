@@ -9,9 +9,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.chattingapplication.R;
+import com.example.chattingapplication.Adapter.UsersAdapter;
 import com.example.chattingapplication.Models.User;
-import com.example.chattingapplication.UsersAdapter;
+import com.example.chattingapplication.R;
 import com.example.chattingapplication.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

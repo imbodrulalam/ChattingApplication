@@ -16,6 +16,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,6 +38,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -47,6 +49,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0' //for circle picture shape
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation "com.github.pgreze:android-reactions:1.4"//reaction
 
     //Firebase Setup
     implementation platform('com.google.firebase:firebase-bom:26.5.0')//firebase setup

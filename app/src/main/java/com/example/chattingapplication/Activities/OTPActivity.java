@@ -1,14 +1,12 @@
 package com.example.chattingapplication.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chattingapplication.databinding.ActivityOTPBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,15 +60,17 @@ public class OTPActivity extends AppCompatActivity {
 
                     }
 
+
                     @Override
                     public void onCodeSent(@NonNull String verifyId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         super.onCodeSent(verifyId, forceResendingToken);
                         dialog.dismiss();
-                        verificationId = verifyId;
                         //force to open the keyboard for type otp
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+//                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                         binding.otpView.requestFocus();
+                        verificationId = verifyId;
+
                     }
                 }).build();
         PhoneAuthProvider.verifyPhoneNumber(options);
@@ -91,10 +91,12 @@ public class OTPActivity extends AppCompatActivity {
                             Toast.makeText(OTPActivity.this, "Feiled.", Toast.LENGTH_SHORT).show();
                         }
                     }
+
                 });
             }
         });
 
     }
+
 
 }

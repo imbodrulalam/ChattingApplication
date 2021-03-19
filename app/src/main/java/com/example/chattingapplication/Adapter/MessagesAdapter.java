@@ -1,32 +1,39 @@
     package com.example.chattingapplication.Adapter;
 
     import android.content.Context;
-    import android.view.LayoutInflater;
-    import android.view.View;
-    import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 
-    import androidx.annotation.NonNull;
-    import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-    import com.example.chattingapplication.Models.Message;
-    import com.example.chattingapplication.R;
-    import com.example.chattingapplication.databinding.ItemReceiverBinding;
-    import com.example.chattingapplication.databinding.ItemSentBinding;
-    import com.google.firebase.auth.FirebaseAuth;
+import com.example.chattingapplication.Models.Message;
+import com.example.chattingapplication.R;
+import com.example.chattingapplication.databinding.ItemReceiverBinding;
+import com.example.chattingapplication.databinding.ItemSentBinding;
+import com.github.pgreze.reactions.ReactionPopup;
+import com.github.pgreze.reactions.ReactionsConfig;
+import com.github.pgreze.reactions.ReactionsConfigBuilder;
+import com.google.firebase.auth.FirebaseAuth;
 
-
-    import java.util.ArrayList;
+import java.util.ArrayList;
 
     public class MessagesAdapter extends RecyclerView.Adapter {
          Context context;
         ArrayList<Message> messages;
+        String senderRoom;
+        String receiverRoom;
 
         final int ITEM_SENT = 1;
         final int ITEM_RECEIVE = 2;
 
-        public MessagesAdapter(Context context, ArrayList<Message> messages){
+        public MessagesAdapter(Context context, ArrayList<Message> messages, String senderRoom,String receiverRoom){
             this.context = context;
             this.messages = messages;
+            this.senderRoom = senderRoom;
+            this.receiverRoom = receiverRoom;
         }
 
         @NonNull
@@ -55,12 +62,81 @@
         @Override
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             Message message = messages.get(position);
+
+            int reactions[] = new int[]{
+                        R.drawable.ic_fb_wow,
+                        R.drawable.ic_fb_laugh,
+                        R.drawable.ic_fb_love,
+                        R.drawable.ic_fb_like,
+                        R.drawable.ic_fb_sad,
+                        R.drawable.ic_fb_angry
+            };
+
+            ReactionsConfig config = new ReactionsConfigBuilder(context)
+                    .withReactions(reactions)
+                    .build();
+            ReactionPopup popup = new ReactionPopup(context, config, (positionReaction) -> {
+                if(holder.getClass() == SentViewHolder.class){
+                    SentViewHolder viewHolder = (SentViewHolder)holder;
+                    viewHolder.binding.feeling.setImageResource(reactions[positionReaction]);
+                    viewHolder.binding.feeling.setVisibility(View.VISIBLE);
+                }else{
+                    ReceiverViewHolder viewHolder = (ReceiverViewHolder)holder;
+                    viewHolder.binding.feeling.setImageResource(reactions[positionReaction]);
+                    viewHolder.binding.feeling.setVisibility(View.VISIBLE);
+                }
+                message.setFeeling(positionReaction);
+
+//                FirebaseDatabase.getInstance().getReference()
+//                        .child("chats")
+//                        .child(senderRoom)
+//                        .child("messages")
+//                        .child(message.getMessageId()).setValue(message);
+//
+//                FirebaseDatabase.getInstance().getReference()
+//                        .child("chats")
+//                        .child(receiverRoom)
+//                        .child("messages")
+//                        .child(message.getMessageId()).setValue(message);
+
+                return true; // true is closing popup, false is requesting a new selection
+            });
+
             if(holder.getClass() == SentViewHolder.class){
                 SentViewHolder viewHolder = (SentViewHolder)holder;
                 viewHolder.binding.message.setText(message.getMessage());
+                if(message.getFeeling() >= 0){
+                    viewHolder.binding.feeling.setImageResource(reactions[message.getFeeling()]);
+                    viewHolder.binding.feeling.setVisibility(View.VISIBLE);
+
+                }else{
+                    viewHolder.binding.feeling.setVisibility(View.GONE);
+                }
+                viewHolder.binding.message.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        popup.onTouch(v,event);
+                        return false;
+                    }
+                });
             }else{
                 ReceiverViewHolder viewHolder = (ReceiverViewHolder)holder;
                 viewHolder.binding.message.setText(message.getMessage());
+                if(message.getFeeling() >= 0){
+                    viewHolder.binding.feeling.setImageResource(reactions[message.getFeeling()]);
+                    viewHolder.binding.feeling.setVisibility(View.VISIBLE);
+
+                }else{
+                    viewHolder.binding.feeling.setVisibility(View.GONE);
+                }
+                viewHolder.binding.message.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        popup.onTouch(v,event);
+                        return false;
+                    }
+                });
+
             }
 
         }

@@ -3,7 +3,7 @@ package com.example.chattingapplication.Models;
 public class Message {
     String messageId, message, senderId;
     private long timestamp;
-    private int feeling;
+    private int feeling = -1;
 
     public Message(){
 
@@ -13,6 +13,7 @@ public class Message {
         this.message = message;
         this.senderId = senderId;
         this.timestamp = timestamp;
+
     }
 
 
@@ -20,9 +21,7 @@ public class Message {
         return messageId;
     }
 
-    public void setMessageId(String messageId) {
-        this.messageId = messageId;
-    }
+    public void setMessageId(String messageId) {this.messageId = messageId;}
 
     public String getMessage() {
         return message;

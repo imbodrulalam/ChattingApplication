@@ -34,7 +34,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         messages =new ArrayList<>();
-        adapter = new MessagesAdapter(this, messages);
+        adapter = new MessagesAdapter(this, messages, senderRoom, receiverRoom);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);
 
@@ -55,6 +55,7 @@ public class ChatActivity extends AppCompatActivity {
                         messages.clear();
                         for(DataSnapshot snapshot1 : snapshot.getChildren()){
                             Message message = snapshot1.getValue(Message.class);
+                            message.setMessageId( snapshot1.getKey());
                             messages.add(message);
                         }
                         adapter.notifyDataSetChanged();
@@ -72,20 +73,22 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String messageText = binding.messageBox.getText().toString();
                 binding.messageBox.setText("");
-                Date date =new Date();
+                Date date = new Date();
                 Message message = new Message(messageText, senderUid, date.getTime());
+
+                String randomKey = database.getReference().push().getKey();
 
                 database.getReference().child("chats")
                         .child(senderRoom)
-                        . child("messages")
-                        .push()
+                        .child("messages")
+                        .child(randomKey)
                         .setValue(message).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         database.getReference().child("chats")
                                 .child(receiverRoom)
-                                . child("messages")
-                                .push()
+                                .child("messages")
+                                .child(randomKey)
                                 .setValue(message).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
