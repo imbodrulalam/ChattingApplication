@@ -13,6 +13,7 @@ import com.example.chattingapplication.Adapter.UsersAdapter;
 import com.example.chattingapplication.Models.User;
 import com.example.chattingapplication.R;
 import com.example.chattingapplication.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 users.clear();
                 for(DataSnapshot snapshot1 : snapshot.getChildren()){
                     User user = snapshot1.getValue(User.class);
+                    if(!user.getUid().equals(FirebaseAuth.getInstance().getUid()))  //Show users without me
                     users.add(user);
                 }
                 usersAdapter.notifyDataSetChanged();

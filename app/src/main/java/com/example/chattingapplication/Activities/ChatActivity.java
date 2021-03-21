@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ChatActivity extends AppCompatActivity {
     ActivityChatBinding binding;
@@ -33,20 +34,20 @@ public class ChatActivity extends AppCompatActivity {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+
         String name = getIntent().getStringExtra("name");
         String receiverUid = getIntent().getStringExtra("uid");
         String senderUid = FirebaseAuth.getInstance().getUid();
         senderRoom = senderUid + receiverUid;
         receiverRoom = receiverUid + senderUid;
+        database = FirebaseDatabase.getInstance();
 
         messages =new ArrayList<>();
         adapter = new MessagesAdapter(this, messages, senderRoom, receiverRoom);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);
-
-
-        database = FirebaseDatabase.getInstance();
-
+        
         database.getReference().child("chats")
                 .child(senderRoom)
                 .child("messages")
@@ -59,6 +60,8 @@ public class ChatActivity extends AppCompatActivity {
                             Message message = snapshot1.getValue(Message.class);
                             message.setMessageId( snapshot1.getKey());
                             messages.add(message);
+
+
                         }
                         adapter.notifyDataSetChanged();
 
@@ -80,6 +83,12 @@ public class ChatActivity extends AppCompatActivity {
 
                 String randomKey = database.getReference().push().getKey();
 
+                HashMap<String,Object> lastMsgObj = new HashMap<>();
+                lastMsgObj.put("lastMsg", message.getMessage());
+                lastMsgObj.put("lastMsgTime",date.getTime());
+                database.getReference().child("chats").child(senderRoom).updateChildren(lastMsgObj);
+                database.getReference().child("chats").child(receiverRoom).updateChildren(lastMsgObj);
+
                 database.getReference().child("chats")
                         .child(senderRoom)
                         .child("messages")
@@ -97,6 +106,9 @@ public class ChatActivity extends AppCompatActivity {
 
                             }
                         });
+
+
+
 
                     }
                 });
