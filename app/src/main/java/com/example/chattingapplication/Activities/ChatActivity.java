@@ -33,16 +33,18 @@ public class ChatActivity extends AppCompatActivity {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        messages =new ArrayList<>();
-        adapter = new MessagesAdapter(this, messages, senderRoom, receiverRoom);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerView.setAdapter(adapter);
-
         String name = getIntent().getStringExtra("name");
         String receiverUid = getIntent().getStringExtra("uid");
         String senderUid = FirebaseAuth.getInstance().getUid();
         senderRoom = senderUid + receiverUid;
         receiverRoom = receiverUid + senderUid;
+
+        messages =new ArrayList<>();
+        adapter = new MessagesAdapter(this, messages, senderRoom, receiverRoom);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.setAdapter(adapter);
+
+
         database = FirebaseDatabase.getInstance();
 
         database.getReference().child("chats")

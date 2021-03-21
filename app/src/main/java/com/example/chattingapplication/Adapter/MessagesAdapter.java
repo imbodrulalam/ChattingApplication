@@ -1,24 +1,25 @@
     package com.example.chattingapplication.Adapter;
 
     import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+    import android.view.LayoutInflater;
+    import android.view.MotionEvent;
+    import android.view.View;
+    import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+    import androidx.annotation.NonNull;
+    import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.chattingapplication.Models.Message;
-import com.example.chattingapplication.R;
-import com.example.chattingapplication.databinding.ItemReceiverBinding;
-import com.example.chattingapplication.databinding.ItemSentBinding;
-import com.github.pgreze.reactions.ReactionPopup;
-import com.github.pgreze.reactions.ReactionsConfig;
-import com.github.pgreze.reactions.ReactionsConfigBuilder;
-import com.google.firebase.auth.FirebaseAuth;
+    import com.example.chattingapplication.Models.Message;
+    import com.example.chattingapplication.R;
+    import com.example.chattingapplication.databinding.ItemReceiverBinding;
+    import com.example.chattingapplication.databinding.ItemSentBinding;
+    import com.github.pgreze.reactions.ReactionPopup;
+    import com.github.pgreze.reactions.ReactionsConfig;
+    import com.github.pgreze.reactions.ReactionsConfigBuilder;
+    import com.google.firebase.auth.FirebaseAuth;
+    import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
+    import java.util.ArrayList;
 
     public class MessagesAdapter extends RecyclerView.Adapter {
          Context context;
@@ -87,17 +88,17 @@ import java.util.ArrayList;
                 }
                 message.setFeeling(positionReaction);
 
-//                FirebaseDatabase.getInstance().getReference()
-//                        .child("chats")
-//                        .child(senderRoom)
-//                        .child("messages")
-//                        .child(message.getMessageId()).setValue(message);
-//
-//                FirebaseDatabase.getInstance().getReference()
-//                        .child("chats")
-//                        .child(receiverRoom)
-//                        .child("messages")
-//                        .child(message.getMessageId()).setValue(message);
+                FirebaseDatabase.getInstance().getReference()
+                        .child("chats")
+                        .child(senderRoom)
+                        .child("messages")
+                        .child(message.getMessageId()).setValue(message);
+
+                FirebaseDatabase.getInstance().getReference()
+                        .child("chats")
+                        .child(receiverRoom)
+                        .child("messages")
+                        .child(message.getMessageId()).setValue(message);
 
                 return true; // true is closing popup, false is requesting a new selection
             });
