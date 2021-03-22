@@ -9,6 +9,7 @@
     import androidx.annotation.NonNull;
     import androidx.recyclerview.widget.RecyclerView;
 
+    import com.bumptech.glide.Glide;
     import com.example.chattingapplication.Models.Message;
     import com.example.chattingapplication.R;
     import com.example.chattingapplication.databinding.ItemReceiverBinding;
@@ -106,6 +107,16 @@
             if(holder.getClass() == SentViewHolder.class){
                 SentViewHolder viewHolder = (SentViewHolder)holder;
                 viewHolder.binding.message.setText(message.getMessage());
+                //photo showing
+                if(message.getMessage().equals("photo")){
+                    viewHolder.binding.image.setVisibility(View.VISIBLE);
+                    viewHolder.binding.message.setVisibility(View.GONE);
+                    Glide.with(context)
+                            .load(message.getImageUrl())
+                            .placeholder(R.drawable.placeholder)
+                            .into(viewHolder.binding.image);
+                }
+
                 if(message.getFeeling() >= 0){
                     viewHolder.binding.feeling.setImageResource(reactions[message.getFeeling()]);
                     viewHolder.binding.feeling.setVisibility(View.VISIBLE);
@@ -120,9 +131,24 @@
                         return false;
                     }
                 });
+                viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        popup.onTouch(v,event);
+                        return false;
+                    }
+                });
             }else{
                 ReceiverViewHolder viewHolder = (ReceiverViewHolder)holder;
                 viewHolder.binding.message.setText(message.getMessage());
+                if(message.getMessage().equals("photo")){
+                    viewHolder.binding.image.setVisibility(View.VISIBLE);
+                    viewHolder.binding.message.setVisibility(View.GONE);
+                    Glide.with(context)
+                            .load(message.getImageUrl())
+                            .placeholder(R.drawable.placeholder)
+                            .into(viewHolder.binding.image);
+                }
                 if(message.getFeeling() >= 0){
                     viewHolder.binding.feeling.setImageResource(reactions[message.getFeeling()]);
                     viewHolder.binding.feeling.setVisibility(View.VISIBLE);
@@ -131,6 +157,13 @@
                     viewHolder.binding.feeling.setVisibility(View.GONE);
                 }
                 viewHolder.binding.message.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        popup.onTouch(v,event);
+                        return false;
+                    }
+                });
+                viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         popup.onTouch(v,event);
