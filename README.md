@@ -1,4 +1,4 @@
-# Chatting Application for Android Device(ChatZone)
+<h1 align="center"> Chatting Application for Android Device(ChatZone) </h1>
 
 
 ## ChatZone
@@ -15,7 +15,7 @@ ChatZone is a FREE messaging app available for Android. ChatZone uses your phone
 ## [<p align="center">Download</p>](https://drive.google.com/drive/folders/17NgW1G1VYN4FvWf3DYI5BHYLW2j8ltn8?usp=sharing) 
 
 
-## About Project
+<h1 align="center"> Project Details </h1>
 This is a chat application project for Android users where users can chat with each other. It is an online based application. User can be connected by internet with others. This is a very simple App and easy to use. It's connected with online Database so user data will be stored in database.
 
 ## Available Features
