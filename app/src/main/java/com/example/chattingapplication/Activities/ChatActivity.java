@@ -1,5 +1,6 @@
 package com.example.chattingapplication.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -112,6 +113,17 @@ public class ChatActivity extends AppCompatActivity {
 
                     }
                 });
+
+            }
+        });
+
+        binding.attachment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, 25);
 
             }
         });

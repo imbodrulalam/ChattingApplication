@@ -8,8 +8,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:src="@drawable/avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,8 +21,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:text="Sample Name"
-        android:textColor="#090101"
-        android:textSize="18sp"
+        android:textColor="#01126C"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/profile"
         app:layout_constraintTop_toTopOf="@+id/profile" />
@@ -32,7 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="tap to chat"
-        android:textSize="14sp"
+        android:textColor="#014C20"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/username"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -44,7 +45,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="12:00 am"
+        android:textAllCaps="true"
+        android:textColor="#8E04DE"
         android:textSize="14sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,8 +56,8 @@
         android:id="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="#989B98"
+        android:layout_marginTop="10dp"
+        android:background="@color/greenDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile" />
