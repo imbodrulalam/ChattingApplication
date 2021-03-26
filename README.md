@@ -1,8 +1,8 @@
-<h1 align="center"> Chatting Application for Android Device(ChatZone) </h1>
+<h1 align="center"> Chatting Application for Android Device(MIU Messenger) </h1>
 
 
-## ChatZone
-ChatZone is a FREE messaging app available for Android. ChatZone uses your phone's Internet connection (4G/3G/2G/EDGE or Wi-Fi, as available) to let you message and call friends and family. Switch from SMS to ChatZone to send and receive messages, calls, photos, videos, documents, and Voice Messages.
+## MIU Messenger
+ MIU Messenger is a FREE messaging app available for MIU Students.  MIU Messenger uses your phone's Internet connection (4G/3G/2G/EDGE or Wi-Fi, as available) to let you message and call friends and family. Switch from SMS to  MIU Messenger to send and receive messages, calls, photos, videos, documents, and Voice Messages.
 
 
 <p align="center">
@@ -10,7 +10,7 @@ ChatZone is a FREE messaging app available for Android. ChatZone uses your phone
 </p>
 
 
-<h1 align="center"> Download ChatZone Application(APK) for Android Device: </h1>
+<h1 align="center"> Download  MIU Messenger Application(APK) for Android Device: </h1>
 
 ## [<p align="center">Download</p>](https://drive.google.com/drive/folders/17NgW1G1VYN4FvWf3DYI5BHYLW2j8ltn8?usp=sharing) 
 
